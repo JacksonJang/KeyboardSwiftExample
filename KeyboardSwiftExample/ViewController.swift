@@ -126,10 +126,12 @@ extension ViewController {
     
     @objc
     private func keyboardDidShowNotification(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
+            
+            print("💙 keyboardDidShowNotification contentInsets : \(contentInsets)")
         }
     }
     
@@ -138,6 +140,8 @@ extension ViewController {
         let contentInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInsets
         self.scrollView.scrollIndicatorInsets = contentInsets
+        
+        print("💙 keyboardWillHideNotification contentInsets : \(contentInsets)")
     }
 
 }
