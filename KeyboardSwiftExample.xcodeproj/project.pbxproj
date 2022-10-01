@@ -13,6 +13,7 @@
 		E2F4C3B428E87B0D00D3F344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F4C3B228E87B0D00D3F344 /* Main.storyboard */; };
 		E2F4C3B628E87B0E00D3F344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F4C3B528E87B0E00D3F344 /* Assets.xcassets */; };
 		E2F4C3B928E87B0E00D3F344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2F4C3B728E87B0E00D3F344 /* LaunchScreen.storyboard */; };
+		E2F4C3C128E87DC200D3F344 /* RoundTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F4C3C028E87DC200D3F344 /* RoundTextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E2F4C3B528E87B0E00D3F344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2F4C3B828E87B0E00D3F344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2F4C3BA28E87B0E00D3F344 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2F4C3C028E87DC200D3F344 /* RoundTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundTextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				E2F4C3AC28E87B0D00D3F344 /* AppDelegate.swift */,
 				E2F4C3AE28E87B0D00D3F344 /* SceneDelegate.swift */,
 				E2F4C3B028E87B0D00D3F344 /* ViewController.swift */,
+				E2F4C3C028E87DC200D3F344 /* RoundTextView.swift */,
 				E2F4C3B228E87B0D00D3F344 /* Main.storyboard */,
 				E2F4C3B528E87B0E00D3F344 /* Assets.xcassets */,
 				E2F4C3B728E87B0E00D3F344 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				E2F4C3B128E87B0D00D3F344 /* ViewController.swift in Sources */,
 				E2F4C3AD28E87B0D00D3F344 /* AppDelegate.swift in Sources */,
+				E2F4C3C128E87DC200D3F344 /* RoundTextView.swift in Sources */,
 				E2F4C3AF28E87B0D00D3F344 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
