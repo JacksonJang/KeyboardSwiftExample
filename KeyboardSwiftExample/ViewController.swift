@@ -8,6 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    let keyboardManager = KeyboardManager()
     lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
     
     let scrollView:UIScrollView = {
@@ -39,6 +40,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        setupKeyboardManager()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,7 +60,6 @@ class ViewController: UIViewController {
         self.view.addSubview(scrollView)
         
         setupTextView()
-        
         setupConstraints()
     }
     
@@ -90,7 +91,7 @@ class ViewController: UIViewController {
     /// - parameter bool : true is activiting observer, false is deactivating observer
     private func registerObserver(_ bool:Bool) {
         registerScrollObserver(bool)
-        registerKeyboardObserver(bool)
+        keyboardManager.register(bool)
     }
     
     /// - parameter bool : true is activiting observer, false is deactivating observer
@@ -111,37 +112,9 @@ class ViewController: UIViewController {
     }
 }
 
-//MARK: - Keyboard Observer
+//MARK: - KeyboardManager
 extension ViewController {
-    /// - parameter bool : true is activiting observer, false is deactivating observer
-    private func registerKeyboardObserver(_ bool: Bool) {
-        if bool {
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShowNotification(_:)), name: UIResponder.keyboardDidShowNotification, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHideNotification(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        } else {
-            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        }
+    private func setupKeyboardManager() {
+        keyboardManager.configuration(parentView: self.view, scrollView: self.scrollView)
     }
-    
-    @objc
-    private func keyboardDidShowNotification(_ notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-            self.scrollView.contentInset = contentInsets
-            self.scrollView.scrollIndicatorInsets = contentInsets
-            
-            print("💙 keyboardDidShowNotification contentInsets : \(contentInsets)")
-        }
-    }
-    
-    @objc
-    private func keyboardWillHideNotification(_ notification: NSNotification) {
-        let contentInsets = UIEdgeInsets.zero
-        self.scrollView.contentInset = contentInsets
-        self.scrollView.scrollIndicatorInsets = contentInsets
-        
-        print("💙 keyboardWillHideNotification contentInsets : \(contentInsets)")
-    }
-
 }
