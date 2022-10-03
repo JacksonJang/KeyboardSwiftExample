@@ -9,10 +9,12 @@ import UIKit
 
 public class KeyboardManager: NSObject {
     /// saved value that is keyboard offset, default value : nil
-    var keyboardOffset: CGPoint?
+    private var keyboardOffset: CGPoint?
     
-    var parentView:UIView?
-    var scrollView:UIScrollView?
+    private var parentView:UIView!
+    private var scrollView:UIScrollView!
+    
+    private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
     
     /// - parameters:
     ///  - parentView: what you're using view of UIViewController
@@ -20,6 +22,18 @@ public class KeyboardManager: NSObject {
     public func configuration(parentView:UIView, scrollView:UIScrollView) {
         self.parentView = parentView
         self.scrollView = scrollView
+    }
+    
+    /// - parameter bool : true is activiting tapGesture of endEditing for ScrollView, false is deactivating
+    public func isEndEditing(_ bool:Bool) {
+        if bool {
+            tapGesture.numberOfTapsRequired = 1
+            tapGesture.isEnabled = true
+            tapGesture.cancelsTouchesInView = false
+            scrollView.addGestureRecognizer(tapGesture)
+        } else {
+            scrollView.removeGestureRecognizer(tapGesture)
+        }
     }
     
     /// - parameter bool : true is activiting observer, false is deactivating observer
@@ -93,5 +107,10 @@ public class KeyboardManager: NSObject {
         
         scrollView.setContentOffset(restoreOffset, animated: true)
         self.keyboardOffset = nil
+    }
+    
+    @objc
+    private func endEditing() {
+        self.parentView.endEditing(true)
     }
 }
